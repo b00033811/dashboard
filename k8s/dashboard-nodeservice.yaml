@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dashboard
+  labels:
+    name: dashboard
+spec:
+  type: NodePort
+  ports:
+    - port: 8006
+      targetPort: 5006
+      nodePort: 30037
+      name: http
+  selector:
+    component: dashboard

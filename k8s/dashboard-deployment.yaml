@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: dashboard
+  template:
+    metadata:
+      labels:
+        component: dashboard
+    spec:
+      containers:
+        - name: dashboard
+          image: localhost:5000/dashboard:dev
+          ports:
+            - containerPort: 5006
+          env:
+            - name: REDIS_HOST
+              value: "redis-cluster-ip-service"
+            - name: REDIS_PORT
+              value: "6379"
+
